@@ -21,11 +21,25 @@ const navMenu = [
     }
 ]
 
+const musicMenu = [
+    {
+        name: 'Create Playlist',
+        icon: MdPlaylistAdd,
+        route: '/'
+    },
+    {
+        name: 'Favourites',
+        icon: MdFavorite,
+        route: '/favourites'
+    }
+]
+
+const playlist = new Array(30).fill(1).map((_, i) => `Playlist ${i + 1}`)
 
 const Sidebar = () => {
 return (
     <Box width='100%' height='calc(100vh - 100px)' bg='black' paddingX='5px' color='grey'>
-            <Box paddingY='20px'>
+            <Box paddingY='20px' height='100%'>
             <Box width='120px' marginBottom='20px' paddingX='20px'>
                 <NextImage src='/TBlogo.png' height={60} width={60} />
             </Box>
@@ -45,6 +59,38 @@ return (
                 ))}
             </List>
             </Box>
+            <Box marginTop='20px'>
+                <List spacing={2}>
+                    {musicMenu.map(menu => (
+                        <ListItem paddingX='20px' fontSize='16px' key={menu.name}>
+                            <LinkBox>
+                        <NextLink href={menu.route} passHref>
+                        <LinkOverlay>
+                        <ListIcon as={menu.icon} color='white' marginRight='20px' />
+                        {menu.name}
+                        </LinkOverlay>
+                        </NextLink>
+                    </LinkBox>
+                        </ListItem>
+                    ))}
+                </List>
+            </Box>
+                    <Divider color='grey.800'/>
+                    <Box height='55%' overflowY='auto' paddingY='20px'>
+                        <List spacing={1}>
+                            {playlist.map(playlist => (
+                                <ListItem padding='20px key={playlist}'>
+                                    <LinkBox>
+                                    <NextLink href='/'>
+                                        <LinkOverlay>
+                                        {playlist}
+                                        </LinkOverlay>
+                                    </NextLink>
+                                    </LinkBox>
+                                </ListItem>
+                            ))}
+                        </List>
+                    </Box>
             </Box>
     </Box>
 )
