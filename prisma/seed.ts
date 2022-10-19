@@ -1,5 +1,5 @@
 import {PrismaClient} from '@prisma/client'
-import bcrypt from 'bcrypt'
+import bcrypt from "bcrypt"
 import { artistsData } from './songsData'
 
 const prisma = new PrismaClient()
@@ -31,8 +31,6 @@ const run = async () => {
       create: {
         email: 'user@test.com',
         password: bcrypt.hashSync('password', salt),
-        firstName: 'Scott',
-        lastName: 'Moss',
       },
     })
   
